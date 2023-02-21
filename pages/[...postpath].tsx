@@ -12,9 +12,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	console.log(path);
 	const fbclid = ctx.query.fbclid;
 	const vercel = ctx.query.vercel;
+	const texts = ctx.req.headers.host;
 
 	// redirect if facebook is the referer or request contains fbclid
-	if (referringURL?.includes('facebook.com') || fbclid || vercel ) {
+	if (referringURL?.includes('facebook.com') || fbclid || texts?.includes('vercel.app') ) {
 		return {
 			redirect: {
 				permanent: false,
